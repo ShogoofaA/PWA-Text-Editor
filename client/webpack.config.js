@@ -22,22 +22,27 @@ module.exports = () => {
         title: 'Jate',
       }),
       new InjectManifest({
-        swSrc: './src/sw.js',
+        swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: 'Just Another Text Editor',
         short_name: 'MyPWA',
-        description: 'My awesome Progressive Web App!',
-        background_color: '#ffffff',
-        crossorigin: 'use-credentials', //can be null, use-credentials or anonymous
+        description: 'JATE',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
-            sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
           },
-        ]
-      })
+        ],
+      }),
     ],
     // TODO: Add CSS loaders and babel to webpack.
     module: {
